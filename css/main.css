@@ -872,7 +872,7 @@ pre .javascript .function {
   background: #fff;
 }
 .header-inner {
-  position: relative;
+  position: fixed;
 }
 .headband {
   height: 3px;
@@ -1509,6 +1509,60 @@ pre .javascript .function {
   font-size: 13px;
   color: #999;
 }
+.site-state-cv {
+  display: block;
+  text-align: center;
+  padding: 0 10px;
+  margin: 0px auto;
+  border-bottom: none;
+  background: rgba(0,0,0,0);
+  text-decoration: none;
+}
+.site-state-cv span {
+  margin: 0px auto;
+  padding: 4px 24px;
+  border-radius: 4px;
+  border: 1px solid #999;
+}
+.site-state-cv a:link {
+  border-bottom: none;
+  text-decoration: none;
+}
+.site-state-cv a:visited {
+  border-bottom: none;
+  text-decoration: none;
+}
+.site-state-cv a:hover {
+  border-bottom: none;
+  text-decoration: none;
+}
+.site-state-cv btn {
+  display: block;
+  text-align: center;
+  padding: 0 10px;
+  margin: 0px auto;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background: #000;
+}
+.site-state-cv btn:first-child {
+  border-left: none;
+}
+.site-state-cv btn a {
+  border-bottom: none;
+}
+.site-state-divider {
+  display: block;
+  margin: 10px 0px 10px 0px;
+  height: 1px;
+  background: #999;
+}
+.site-state-divider:first-child {
+  border-left: none;
+}
+.site-state-divider a {
+  border-bottom: none;
+}
 .feed-link {
   margin-top: 20px;
 }
@@ -1549,7 +1603,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b5ff39;
+  background: #ff664e;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2159,7 +2213,6 @@ body {
   }
 }
 .header-inner {
-  position: absolute;
   top: 0;
   overflow: hidden;
   padding: 0;
@@ -2236,7 +2289,6 @@ body {
   }
 }
 .sidebar {
-  position: static;
   float: left;
   margin-top: 300px;
   width: 240px;

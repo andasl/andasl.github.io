@@ -88,7 +88,7 @@
 monkey主要应用在压力和可靠性测试上，业务流程的测试还是需要依靠其他方法
 
 以下是引用他人博客，给出链接简单使用使用介绍更深入讲解
-##开始Monkey123adb shell monkey  -p &amp;lt;your.package.name&amp;gt; --throttle 20 -v -s 3500 30000 &amp;gt; D:\monkey_log.">
+开始Monkey123adb shell monkey  -p &amp;lt;your.package.name&amp;gt; --throttle 20 -v -s 3500 30000 &amp;gt; D:\monkey_log.tx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="monkey 初体验">
 <meta property="og:url" content="http://yoursite.com/2017/02/10/My-New-Post/index.html">
@@ -97,15 +97,15 @@ monkey主要应用在压力和可靠性测试上，业务流程的测试还是�
 monkey主要应用在压力和可靠性测试上，业务流程的测试还是需要依靠其他方法
 
 以下是引用他人博客，给出链接简单使用使用介绍更深入讲解
-##开始Monkey123adb shell monkey  -p &amp;lt;your.package.name&amp;gt; --throttle 20 -v -s 3500 30000 &amp;gt; D:\monkey_log.">
-<meta property="og:updated_time" content="2017-02-10T14:01:18.865Z">
+开始Monkey123adb shell monkey  -p &amp;lt;your.package.name&amp;gt; --throttle 20 -v -s 3500 30000 &amp;gt; D:\monkey_log.tx">
+<meta property="og:updated_time" content="2017-02-13T13:47:29.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="monkey 初体验">
 <meta name="twitter:description" content="monkey是Android自动化测试工具
 monkey主要应用在压力和可靠性测试上，业务流程的测试还是需要依靠其他方法
 
 以下是引用他人博客，给出链接简单使用使用介绍更深入讲解
-##开始Monkey123adb shell monkey  -p &amp;lt;your.package.name&amp;gt; --throttle 20 -v -s 3500 30000 &amp;gt; D:\monkey_log.">
+开始Monkey123adb shell monkey  -p &amp;lt;your.package.name&amp;gt; --throttle 20 -v -s 3500 30000 &amp;gt; D:\monkey_log.tx">
 
 
 
@@ -277,8 +277,11 @@ monkey主要应用在压力和可靠性测试上，业务流程的测试还是�
 <p>monkey主要应用在压力和可靠性测试上，业务流程的测试还是需要依靠其他方法</p>
 </blockquote>
 <p>以下是引用他人博客，给出链接<br><a href="http://www.mamicode.com/info-detail-628608.html" target="_blank" rel="external">简单使用</a><br><a href="http://blog.csdn.net/tskyfree/article/details/41868813" target="_blank" rel="external">使用介绍</a><br><a href="https://testerhome.com/topics/7266" target="_blank" rel="external">更深入讲解</a></p>
-<p>##开始Monkey<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">adb shell monkey  -p &lt;your.<span class="keyword">package</span>.name&gt; --throttle <span class="number">20</span> -v -s <span class="number">3500</span> <span class="number">30000</span> &gt; D:\monkey_log.txt</div><div class="line"><span class="comment">// 举例</span></div><div class="line">adb shell monkey  -p com.example.test --throttle <span class="number">20</span> -v -s <span class="number">3500</span> <span class="number">30000</span> &gt; D:\monkey_log.txt</div></pre></td></tr></table></figure></p>
-<p>这个monkey 命令，当monkey test 过程中遇到Crash 或者ANR，就会自动终止.<br>&gt;<br>那么需要执行多久呢，100次，176ms，这个时间并不是100*20ms</p>
+<h2 id="开始Monkey"><a href="#开始Monkey" class="headerlink" title="开始Monkey"></a>开始Monkey</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">adb shell monkey  -p &lt;your.<span class="keyword">package</span>.name&gt; --throttle <span class="number">20</span> -v -s <span class="number">3500</span> <span class="number">30000</span> &gt; D:\monkey_log.txt</div><div class="line"><span class="comment">// 举例</span></div><div class="line">adb shell monkey  -p com.example.test --throttle <span class="number">20</span> -v -s <span class="number">3500</span> <span class="number">30000</span> &gt; D:\monkey_log.txt</div></pre></td></tr></table></figure>
+<p>这个monkey 命令，当monkey test 过程中遇到Crash 或者ANR，就会自动终止.</p>
+<blockquote>
+<p>那么需要执行多久呢，100次，176ms，这个时间并不是100*20ms</p>
+</blockquote>
 <ul>
 <li>throttle 20:每一个操作的间隔 380ms</li>
 <li>s 3500:类似于随机数种子，同一个值会产生一个固定操作序列</li>
@@ -324,20 +327,6 @@ monkey主要应用在压力和可靠性测试上，业务流程的测试还是�
     <footer class="post-footer">
       
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/02/09/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
       
 
       
@@ -397,12 +386,18 @@ monkey主要应用在压力和可靠性测试上，业务流程的测试还是�
                src="/images/avatar.jpg"
                alt="pageTan" />
           <p class="site-author-name" itemprop="name">pageTan</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+          <p class="site-description motion-element" itemprop="description">一花一世界</p>
+          <div class="site-state-posts">
+            <a class="site-state-cv" href="/cv/pageTan2017_2_11.html">
+              <span class="site-state-item-name">简历</span>
+            </a>
+          </div>
+		  <div class="site-state-divider"></div>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -434,7 +429,7 @@ monkey主要应用在压力和可靠性测试上，业务流程的测试还是�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#monkey是Android自动化测试工具"><span class="nav-number">1.</span> <span class="nav-text">monkey是Android自动化测试工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#结束monkey"><span class="nav-number">1.1.</span> <span class="nav-text">结束monkey</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">1.2.</span> <span class="nav-text">注意</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#monkey是Android自动化测试工具"><span class="nav-number">1.</span> <span class="nav-text">monkey是Android自动化测试工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#开始Monkey"><span class="nav-number">1.1.</span> <span class="nav-text">开始Monkey</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束monkey"><span class="nav-number">1.2.</span> <span class="nav-text">结束monkey</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">1.3.</span> <span class="nav-text">注意</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

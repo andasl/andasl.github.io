@@ -84,12 +84,15 @@
 
 
 
+<meta name="description" content="一花一世界">
 <meta property="og:type" content="website">
 <meta property="og:title" content="pageTan的博客">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="pageTan的博客">
+<meta property="og:description" content="一花一世界">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pageTan的博客">
+<meta name="twitter:description" content="一花一世界">
 
 
 
@@ -264,141 +267,18 @@
       
         
           
-            <h1 id="monkey是Android自动化测试工具"><a href="#monkey是Android自动化测试工具" class="headerlink" title="monkey是Android自动化测试工具"></a>monkey是Android自动化测试工具</h1><blockquote>
-<p>monkey主要应用在压力和可靠性测试上，业务流程的测试还是需要依靠其他方法</p>
-</blockquote>
-<p>以下是引用他人博客，给出链接<br><a href="http://www.mamicode.com/info-detail-628608.html" target="_blank" rel="external">简单使用</a><br><a href="http://blog.csdn.net/tskyfree/article/details/41868813" target="_blank" rel="external">使用介绍</a><br><a href="https://testerhome.com/topics/7266" target="_blank" rel="external">更深入讲解</a></p>
-<p>##开始Monkey<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">adb shell monkey  -p &lt;your.<span class="keyword">package</span>.name&gt; --throttle <span class="number">20</span> -v -s <span class="number">3500</span> <span class="number">30000</span> &gt; D:\monkey_log.txt</div><div class="line"><span class="comment">// 举例</span></div><div class="line">adb shell monkey  -p com.example.test --throttle <span class="number">20</span> -v -s <span class="number">3500</span> <span class="number">30000</span> &gt; D:\monkey_log.txt</div></pre></td></tr></table></figure></p>
-<p>这个monkey 命令，当monkey test 过程中遇到Crash 或者ANR，就会自动终止.<br>&gt;<br>那么需要执行多久呢，100次，176ms，这个时间并不是100*20ms</p>
-<ul>
-<li>throttle 20:每一个操作的间隔 380ms</li>
-<li>s 3500:类似于随机数种子，同一个值会产生一个固定操作序列</li>
-<li>300000：操作序列中的操作数目</li>
-<li>v:日志等级，对应还有-v -v、 -v -v -v</li>
-<li>“&gt; D:\monkey_log.txt”：日志保存的位置</li>
-</ul>
-<h2 id="结束monkey"><a href="#结束monkey" class="headerlink" title="结束monkey"></a>结束monkey</h2><ol>
-<li>ps命令  查找uiautomator的进程<br>打开cmd命令行窗口<br>输入：<br>adb shell ps | grep monkey<br>返回来的第一个数字，即是monkey的进程号(如果提示grep找不到，则使用adb shell ”ps | grep monkey“)</li>
-<li>kill 命令结束进程继续输入:<br>adb shell kill [刚才查到的进程号]<br>同理结束其他进程，和其他应用也可用此法，屡试不爽</li>
-<li>ctrl +c结束无效，但是会结束日志文件的写入</li>
-</ol>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol>
-<li>会触发哪些操作<br>触摸、音量，截屏、飞行模式等都有(有时候竟然还开启了音乐，没注意到怎么开启的)</li>
-<li>查看触摸轨迹<br>可以开启adb调试中的显示触摸来查看该触摸事件的触摸轨迹</li>
-<li>是在正式环境还是测试环境上测试<br>得看具体的软件，如果有上报等功能，建议还是测试环境，不然，一不小心上报给谁了，就尴尬了，毕竟这个测试是自动的，不是手动控制的</li>
-<li>如果有webView和url连接会怎样<br>如果点进去了，也会随机触摸，当然，最终还是会触发返回</li>
-<li>如果有输入框会怎样<br>也会随机触发输入，滑动、音量等，但是，如果需要手动点完成(毕竟这才是正常流程)，那不一定能成功，毕竟随机触发(偶尔触发，偶尔不触发)</li>
-<li>如果一不小心monkey了退出登录，那么，接下来的monkey，就只能在登录界面了</li>
-<li>关于测试效率<br>合理调整事件百分比，默认情况下，经常进入的测试界面就那几个，所以覆盖面不广</li>
-<li>–pct-rotation 0 就算设置了这一个，触发的最后一个事件，还是会打开rotation<br> 发送事件总数为 1， 自动旋转被打开(原先是关闭状态)<br>Events injected: 1<br>:Sending rotation degree=0, persist=false<br>:Dropped: keys=0 pointers=0 trackballs=0 flips=0 rotations=0<br>Network stats: elapsed time=31ms (0ms mobile, 0ms wifi, 31ms not connected)<br>// Monkey finished</li>
-<li>monkey之后，如果出现了一些奇怪的问题(比如输入法突然没有自动提示)，别感到奇怪，毕竟是随机触发，说不定被点中了什么</li>
-<li>日志中有一个switch是什么<br>没看懂，在我的例子中，一直都是LoadActivity</li>
-<li>日志中前面的几个百分比是什么(不同sdk中顺序可能不一样)<br>// Event percentages:<br>//   0: 30.0%               // touch触摸事件的百分比(触摸事件是一个down-up事件，它发生在屏幕上的某单一位置)<br>//   1: 8.235294%      // motion 动作事件的百分比(动作事件由屏幕上某处的一个down事件、一系列的伪随机事件和一个up事件组成)直线滑动<br>//   2: 1.6470588%<br>//   3: 12.3529415%    //trackball 轨迹事件的百分比(轨迹事件由一个或几个随机的移动组成，有时还伴随有点击)曲线移动<br>//   4: -0.0%<br>//   5: 20.588236%       // nav  “基本”导航事件的百分比(导航事件由来自方向输入设备的up/down/left/right组成)<br>//   6: 12.3529415%         //majornav  “主要”导航事件的百分比(这些导航事件通常引发图形界面中的动作，如：5-way键盘的中间按键、回退按键、菜单按键)<br>//   7: 1.6470588%      //syskeys   “系统”按键事件的百分比(这些按键通常被保留，由系统使用，如Home、Back、Start Call、End Call及音量控制键)<br>//   8: 1.6470588%    //appswitch 启动Activity的百分比。在随机间隔里，Monkey将执行一个startActivity()调用，作为最大程度覆盖包中全部Activity的一种方法<br>//   9: 0.8235294%<br>//   10: 10.705882%   //anyevent 其它类型事件的百分比。它包罗了所有其它类型的事件，如：按键、其它不常用的设备按钮、等等</li>
-</ol>
+          monkey是Android自动化测试工具
+monkey主要应用在压力和可靠性测试上，业务流程的测试还是需要依靠其他方法
 
-          
-        
-      
-    </div>
+以下是引用他人博客，给出链接简单使用使用介绍更深入讲解
+开始Monkey123adb shell monkey  -p &lt;your.package.name&gt; --
+          ...
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/09/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-09T20:48:25+08:00" content="2017-02-09">
-              2017-02-09
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/02/10/My-New-Post/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -461,12 +341,18 @@
                src="/images/avatar.jpg"
                alt="pageTan" />
           <p class="site-author-name" itemprop="name">pageTan</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+          <p class="site-description motion-element" itemprop="description">一花一世界</p>
+          <div class="site-state-posts">
+            <a class="site-state-cv" href="/cv/pageTan2017_2_11.html">
+              <span class="site-state-item-name">简历</span>
+            </a>
+          </div>
+		  <div class="site-state-divider"></div>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
